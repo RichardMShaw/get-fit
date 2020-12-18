@@ -15,3 +15,39 @@ router.put('/workouts/:id', (req, res) => {
   .then(workout => res.json(workout))
   .catch(err => console.log(err))
 })
+
+router.get('/workouts', (res, req) => {
+  Workout.aggregate([
+    {
+      $addFields: {
+        totalDuration: {
+          $sum: '$tasks.duration'
+        }
+      }
+    }
+  ])
+    .then(workouts => res.json())
+    .catch(err => console.log(err))
+})
+
+router.get('/workouts/range', (req, res) => {
+  Workout.aggregate([
+    {
+      $addFields: {
+        totalDuration: {
+          $sum: '$tasks.duration'
+        }
+      }
+    }
+  ])
+    .sort({ _id: -1 })
+    .limit(7)
+    .then(plans => res.json(plans))
+    .catch(err => console.log(err))
+})
+
+router.delete('/workouts', (req, res) => {
+  Workout.findByIdAndDelete(req.body.id)
+    .then(() => { res.json(true) })
+    .catch(err => console.log(err))
+})
