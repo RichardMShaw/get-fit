@@ -10,13 +10,13 @@ router.post('/workouts', (req, res) => {
 router.put('/workouts/:id', (req, res) => {
   Workout.findByIdAndUpdate(
     req.params.id,
-    { $push: { tasks: req.body } }),
+    { $push: { tasks: req.body } },
     { new: true, runValidators: true })
-  .then(workout => res.json(workout))
-  .catch(err => console.log(err))
+    .then(workout => res.json(workout))
+    .catch(err => console.log(err))
 })
 
-router.get('/workouts', (res, req) => {
+router.get('/workouts', (req, res) => {
   Workout.aggregate([
     {
       $addFields: {
