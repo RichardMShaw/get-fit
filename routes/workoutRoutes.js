@@ -12,7 +12,10 @@ router.put('/workouts/:id', (req, res) => {
     req.params.id,
     { $push: { tasks: req.body } },
     { new: true, runValidators: true })
-    .then(workout => res.json(workout))
+    .then(workout => {
+      console.log(workout)
+      res.json(workout)
+    })
     .catch(err => console.log(err))
 })
 
@@ -21,7 +24,7 @@ router.get('/workouts', (req, res) => {
     {
       $addFields: {
         totalDuration: {
-          $sum: '$tasks.duration'
+          $sum: '$exercises.duration'
         }
       }
     }
@@ -35,7 +38,7 @@ router.get('/workouts/range', (req, res) => {
     {
       $addFields: {
         totalDuration: {
-          $sum: '$tasks.duration'
+          $sum: '$exercises.duration'
         }
       }
     }
