@@ -26,7 +26,7 @@ router.get('/workouts', (res, req) => {
       }
     }
   ])
-    .then(workouts => res.json())
+    .then(workouts => res.json(workouts))
     .catch(err => console.log(err))
 })
 
