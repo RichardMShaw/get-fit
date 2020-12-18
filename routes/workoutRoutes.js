@@ -8,12 +8,12 @@ router.post('/workouts', (req, res) => {
 })
 
 router.put('/workouts/:id', (req, res) => {
+
   Workout.findByIdAndUpdate(
     req.params.id,
-    { $push: { tasks: req.body } },
+    { $push: { exercises: req.body } },
     { new: true, runValidators: true })
     .then(workout => {
-      console.log(workout)
       res.json(workout)
     })
     .catch(err => console.log(err))
@@ -45,7 +45,7 @@ router.get('/workouts/range', (req, res) => {
   ])
     .sort({ _id: -1 })
     .limit(7)
-    .then(plans => res.json(plans))
+    .then(workout => res.json(workout))
     .catch(err => console.log(err))
 })
 
