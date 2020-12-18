@@ -51,3 +51,5 @@ router.delete('/workouts', (req, res) => {
     .then(() => { res.json(true) })
     .catch(err => console.log(err))
 })
+
+module.exports = router
