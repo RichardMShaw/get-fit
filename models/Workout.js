@@ -18,6 +18,18 @@ const Workout = new Schema({
       duration: {
         type: Number,
         required: 'Enter workout duration'
+      },
+      distance: {
+        type: Number
+      },
+      weight: {
+        type: Number
+      },
+      reps: {
+        type: Number
+      },
+      sets: {
+        type: Number
       }
     }
   ]
