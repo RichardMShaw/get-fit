@@ -4,8 +4,8 @@ const Workout = new Schema({
   day: {
     type: Date,
     default: () => new Date()
-  }
-  excercises: [
+  },
+  exercises: [
     {
       type: {
         type: String,
@@ -23,4 +23,4 @@ const Workout = new Schema({
   ]
 }, { timestamps: true })
 
-module.exports = model('Workout', Item)
+module.exports = model('Workout', Workout)
